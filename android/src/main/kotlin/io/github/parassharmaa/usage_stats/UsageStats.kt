@@ -13,7 +13,8 @@ object UsageStats {
 
     fun queryConfig(context: Context, startDate: Long, endDate: Long): ArrayList<Map<String, String>> {
         var usm = context.getSystemService(Context.USAGE_STATS_SERVICE) as UsageStatsManager
-        var configs: List<ConfigurationStats> = usm.queryConfigurations(UsageStatsManager.INTERVAL_BEST, startDate, endDate)
+        var configs: List<ConfigurationStats> = usm.queryConfigurations(UsageStatsManager.INTERVAL_BEST, System.currentTimeMillis() - 1000 * 3600 * 1,
+        System.currentTimeMillis())
 
         var configList: ArrayList<Map<String, String>> = arrayListOf()
 
@@ -33,7 +34,8 @@ object UsageStats {
 
     fun queryEvents(context: Context, startDate: Long, endDate: Long): ArrayList<Map<String, String>> {
         var usm = context.getSystemService(Context.USAGE_STATS_SERVICE) as UsageStatsManager
-        var events: UsageEvents = usm.queryEvents(startDate, endDate)
+        var events: UsageEvents = usm.queryEvents(System.currentTimeMillis() - 1000 * 3600 * 1,
+        System.currentTimeMillis())
         var eventsList: ArrayList<Map<String, String>> = arrayListOf()
 
         while (events.hasNextEvent()) {
@@ -55,7 +57,8 @@ object UsageStats {
     @RequiresApi(Build.VERSION_CODES.P)
     fun queryEventStats(context: Context, startDate: Long, endDate: Long): ArrayList<Map<String, String>> {
         var usm = context.getSystemService(Context.USAGE_STATS_SERVICE) as UsageStatsManager
-        var eventStats = usm.queryEventStats(UsageStatsManager.INTERVAL_BEST, startDate, endDate)
+        var eventStats = usm.queryEventStats(UsageStatsManager.INTERVAL_BEST,System.currentTimeMillis() - 1000 * 3600 * 1,
+        System.currentTimeMillis())
 
         var eventList: ArrayList<Map<String, String>> = arrayListOf()
 
@@ -87,7 +90,8 @@ object UsageStats {
                     "lastTimeStamp" to usage.lastTimeStamp.toString(),
                     "lastTimeUsed" to usage.lastTimeUsed.toString(),
                     "packageName" to usage.packageName.toString(),
-                    "totalTimeInForeground" to usage.totalTimeInForeground.toString()
+                    "totalTimeInForeground" to usage.totalTimeInForeground.toString(),
+                    "lastTimeActive" to usage.lastTimeActive.toString(),
             )
             usageList.add(u)
         }
