@@ -34,8 +34,7 @@ object UsageStats {
 
     fun queryEvents(context: Context, startDate: Long, endDate: Long): ArrayList<Map<String, String>> {
         var usm = context.getSystemService(Context.USAGE_STATS_SERVICE) as UsageStatsManager
-        var events: UsageEvents = usm.queryEvents(System.currentTimeMillis() - 1000 * 3600 * 1,
-        System.currentTimeMillis())
+        var events: UsageEvents = usm.queryEvents(startDate ,endDate)
         var eventsList: ArrayList<Map<String, String>> = arrayListOf()
 
         while (events.hasNextEvent()) {
@@ -91,7 +90,9 @@ object UsageStats {
                     "lastTimeUsed" to usage.lastTimeUsed.toString(),
                     "packageName" to usage.packageName.toString(),
                     "totalTimeInForeground" to usage.totalTimeInForeground.toString(),
-                    "lastTimeActive" to usage.lastTimeActive.toString(),
+                    "lastTimeVisible" to usage.lastTimeVisible.toString(),
+                    "lastTimeForegroundServiceUsed" to usage.lastTimeForegroundServiceUsed.toString(),
+
             )
             usageList.add(u)
         }
