@@ -79,9 +79,7 @@ public class UsageStatsPlugin : FlutterPlugin, MethodCallHandler {
             "queryUsageStats" -> {
                 var start: Long = call.argument<Long>("start") as Long
                 var end: Long = call.argument<Long>("end") as Long
-                Log.d("START TIME :", System.currentTimeMillis() - 1000 * 3600 * 1 );
-                Log.d("END TIME :",   System.currentTimeMillis());
-                result.success(UsageStats.queryUsageStats(mContext!!, start, end))
+                  result.success(UsageStats.queryUsageStats(mContext!!, start, end))
             }
             "queryNetworkUsageStats" -> {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {

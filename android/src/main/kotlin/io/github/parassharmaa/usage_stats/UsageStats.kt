@@ -80,10 +80,6 @@ object UsageStats {
         var usageStats = usm.queryUsageStats(UsageStatsManager.INTERVAL_BEST, System.currentTimeMillis() - 1000,
             System.currentTimeMillis())
 
-        Log.d("START TIME :", System.currentTimeMillis() - 1000 * 3600 * 1 );
-        Log.d("END TIME :",   System.currentTimeMillis());
-
-
         var usageList: ArrayList<Map<String, String>> = arrayListOf()
 
         for (usage in usageStats) {
