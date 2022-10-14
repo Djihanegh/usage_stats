@@ -77,7 +77,7 @@ object UsageStats {
 
     fun queryUsageStats(context: Context, startDate: Long, endDate: Long): ArrayList<Map<String, String>> {
         var usm = context.getSystemService(Context.USAGE_STATS_SERVICE) as UsageStatsManager
-        var usageStats = usm.queryUsageStats(UsageStatsManager.INTERVAL_BEST, System.currentTimeMillis() - 1000 * 3600 * 1,
+        var usageStats = usm.queryUsageStats(UsageStatsManager.INTERVAL_BEST, System.currentTimeMillis() - 1000,
             System.currentTimeMillis())
 
         Log.d("START TIME :", System.currentTimeMillis() - 1000 * 3600 * 1 );
