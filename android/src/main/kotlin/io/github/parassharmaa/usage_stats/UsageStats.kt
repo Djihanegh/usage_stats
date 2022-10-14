@@ -5,7 +5,7 @@ import android.content.Context
 import android.app.usage.UsageStatsManager
 import android.app.usage.UsageEvents
 import android.os.Build
-import android.util.Log
+import android.util.Log as Log
 import androidx.annotation.RequiresApi
 
 object UsageStats {
@@ -79,6 +79,9 @@ object UsageStats {
         var usm = context.getSystemService(Context.USAGE_STATS_SERVICE) as UsageStatsManager
         var usageStats = usm.queryUsageStats(UsageStatsManager.INTERVAL_BEST, System.currentTimeMillis() - 1000 * 3600 * 1,
             System.currentTimeMillis())
+
+        Log.d("START TIME :", System.currentTimeMillis() - 1000 * 3600 * 1 );
+        Log.d("END TIME :",   System.currentTimeMillis());
 
 
         var usageList: ArrayList<Map<String, String>> = arrayListOf()
