@@ -77,8 +77,8 @@ object UsageStats {
 
     fun queryUsageStats(context: Context, startDate: Long, endDate: Long): ArrayList<Map<String, String>> {
         var usm = context.getSystemService(Context.USAGE_STATS_SERVICE) as UsageStatsManager
-        var usageStats = usm.queryUsageStats(UsageStatsManager.INTERVAL_BEST, System.currentTimeMillis() - 1000 * 1 * 1,
-            System.currentTimeMillis())
+        var usageStats = usm.queryUsageStats(UsageStatsManager.INTERVAL_BEST, startDate,
+            endDate)
 
         var usageList: ArrayList<Map<String, String>> = arrayListOf()
 
