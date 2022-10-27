@@ -5,7 +5,7 @@ import android.content.Context
 import android.app.usage.UsageStatsManager
 import android.app.usage.UsageEvents
 import android.os.Build
-import android.util.Log as Log
+import android.util.Log
 import androidx.annotation.RequiresApi
 
 object UsageStats {
@@ -59,6 +59,7 @@ object UsageStats {
         var eventStats = usm.queryEventStats(UsageStatsManager.INTERVAL_BEST,System.currentTimeMillis() - 1000 * 3600 * 1,
         System.currentTimeMillis())
 
+
         var eventList: ArrayList<Map<String, String>> = arrayListOf()
 
         for (event in eventStats) {
@@ -77,8 +78,9 @@ object UsageStats {
 
     fun queryUsageStats(context: Context, startDate: Long, endDate: Long): ArrayList<Map<String, String>> {
         var usm = context.getSystemService(Context.USAGE_STATS_SERVICE) as UsageStatsManager
-        var usageStats = usm.queryUsageStats(UsageStatsManager.INTERVAL_BEST, startDate,
-            endDate)
+        var usageStats = usm.queryUsageStats(UsageStatsManager.INTERVAL_BEST, System.currentTimeMillis() - 1000 * 3600 * 1,
+            System.currentTimeMillis())
+
 
         var usageList: ArrayList<Map<String, String>> = arrayListOf()
 
@@ -89,8 +91,6 @@ object UsageStats {
                     "lastTimeUsed" to usage.lastTimeUsed.toString(),
                     "packageName" to usage.packageName.toString(),
                     "totalTimeInForeground" to usage.totalTimeInForeground.toString(),
-                    "lastTimeVisible" to usage.lastTimeVisible.toString(),
-                    "lastTimeForegroundServiceUsed" to usage.lastTimeForegroundServiceUsed.toString(),
 
             )
             usageList.add(u)
